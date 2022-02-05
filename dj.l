@@ -48,17 +48,14 @@ null {return scanned(NUL);}
 "(" {return scanned(LPAREN);}
 ")" {return scanned(RPAREN);}
 
-
-
-
-
-
-
-
 "//" { char c = input(); while(c!='\n' && c!=EOF) c=input();}
+
 {wspace} { /*skip whitespace*/ }
+
 <<EOF>> {return scanned(ENDOFFILE);}
 . { if(DEBUG) printf("\n"); printf("Lex error on line %d: Illegal character %s\n", yylineno,yytext); exit(-1);}
+
+
 %%
 
 /* process and return scanned token t */
