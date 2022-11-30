@@ -65,27 +65,13 @@ typedef struct astnode {
   /* node attributes: */
   unsigned int intVal;
   char *idVal;
-  /* The following node attributes are used on the first 6 kinds of expressions
-     enumerated above (E.ID(As), ID(As), E.ID, ID, E.ID = E, and ID = E).
-     These attributes get set during type checking and used during code gen,
-     so code gen doesn't duplicate the work of the type checker.
-     The attributes store the statically determined class and member number
-     of an ID that refers to a class method or class variable.
-     When these attributes are both 0, the ID refers not to a member of a class
-     but instead to a local/parameter variable. */
+  
   unsigned int staticClassNum; /* class number in which this member resides */
   unsigned int staticMemberNum; /* when set to i, this member is the ith
                                    method/var in the staticClassNum-th class */
 } ASTree;
 
-/* METHODS TO CREATE AND MANIPULATE THE AST */
 
-/* Create a new AST node of type t.
-   If t is INTEGER_EXPR then the proper intAttribute should be
-   given; otherwise intAttribute is ignored.
-   If t is AST_ID then the proper idAttribute should be given;
-   otherwise idAttribute is ignored.
-*/
 ASTree *newNode(ASTNodeType t, unsigned int lineNum, unsigned int intAttribute,
   char *idAttribute);
 
